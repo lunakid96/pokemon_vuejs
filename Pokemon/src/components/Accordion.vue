@@ -1,0 +1,62 @@
+<script>
+</script>
+<template>
+    <div id="AccordionContainer">
+        <div id="AccordionContent">
+            <slot name="content"></slot>
+        </div>
+        <button id="AccordionBtn">
+            <slot name="button"></slot>
+        </button>
+    </div>
+</template>
+<style scoped>
+#AccordionContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+#AccordionContent {
+    background: #616161;
+    width: 100%;
+    height: calc(100% - 20px);
+}
+
+#AccordionBtn {
+    background: #616161;
+    border: 0;
+    width: 478px;
+    height: 20px;
+    color: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#AccordionBtn::before {
+    content: '';
+    background: transparent;
+    height: 20px;
+    box-shadow: 0 -10px 0 0 #616161;
+    width: 20px;
+    position: absolute;
+    left: -15px;
+    border-top-right-radius: 20px;
+    top: 0px;
+}
+
+#AccordionBtn::after {
+    content: '';
+    background: transparent;
+    height: 20px;
+    box-shadow: 0 -10px 0 0 #616161;
+    width: 20px;
+    position: absolute;
+    right: -15px;
+    border-top-left-radius: 20px;
+    top: 0px;
+}
+</style>
