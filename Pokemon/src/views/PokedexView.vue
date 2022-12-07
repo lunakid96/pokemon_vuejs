@@ -1,15 +1,17 @@
 <script>
 import Accordion from '../components/Accordion.vue';
 import getService from '../service/commonServices.js';
+import Pokedex from '../components/Pokedex.vue';
+import Dropdown from '../components/Dropdown.vue';
 // Load the full build.
 import _ from 'lodash';
 
 export default {
-    components: { Accordion },
+    components: { Accordion, Pokedex, Dropdown },
     data() {
         return {
             result: null,
-            sortSelectedItem: null,
+            sortSelectedItem: { label: 'Lowest Number (First)', value: 'numberAsc' },
             sortDataProvider: [
                 { label: 'Lowest Number (First)', value: 'numberAsc' },
                 { label: 'Highest Number (First)', value: 'numberDesc' },
@@ -38,7 +40,8 @@ export default {
                 for (let i = 0; i < list.length; i++) {
                     let item = list[i];
                     let info = await getService(item.url);
-                    let generateItem = { name: item.name, info: info };
+                    let upperCaseName = item.name[0].toUpperCase() + item.name.substring(1);
+                    let generateItem = { name: upperCaseName, info: info };
                     resultList.push(generateItem);
                 }
             }
@@ -97,32 +100,12 @@ export default {
                     Surprise Me!
                 </button>
                 <div id="SortData">
-                    <label>Sort By</label>
-                    <select id="SortDropdown" v-model="sortSelectedItem">
-                        <option v-for="item in sortDataProvider" :value="item.value"
-                            :selected="(sortSelectedItem == item)">{{ item.label }}</option>
-                    </select>
+                    <h3 class="sort-label">Sort By</h3>
+                    <Dropdown v-model:selectedItem="sortSelectedItem" :dataProvider="sortDataProvider"></Dropdown>
                 </div>
             </div>
             <div id="PokedexContent">
-                <ul class="grid grid-cols-4" v-for="row in dummyDataGrid">
-                    <li v-for="cell in row">
-                        <figure>
-                            <img :src="cell.info.sprites.other['official-artwork']
-                            .front_default" alt="" style="width:100%">
-                        </figure>
-                        <div class="pokemon-info">
-                            <p class="id">
-                                <span>#</span>
-                                {{cell.info.id}}
-                            </p>
-                            <h5>{{cell.name}}</h5>
-                        </div>
-                        <div v-for="ability in cell.info.types" class="abilities">
-                            <span>{{ability.type.name}}</span>
-                        </div>
-                    </li>
-                </ul>
+                <Pokedex :dataProvider="dummyDataGrid"></Pokedex>
             </div>
             <div class="flex justify-center">
                 <button class="button-lightblue" @click="loadMorePokedex()">Load more Pokémon</button>
@@ -223,19 +206,17 @@ export default {
     align-items: center;
 }
 
-#SortDropdown {
-    background: #313131;
-    color: #fff;
-    width: 312px;
-    height: 40px;
+#PokedexContent {
+    padding: 10px;
 }
 
-.button-lightblue {
-    background-color: #30a7d7;
-    font-family: "Flexo-Demi",arial,sans-serif;
-    color: #fff;
-    width: 190px;
-    height: 44px;
-    border-radius: 5px;
+.sort-label {
+    margin-right: 0.75em;
+    white-space: nowrap;
+    font-size: 125%;
+    line-height: 125%;
+    text-transform: none;
+    font-family: "Flexo-Medium",arial,sans-serif;
+    color: #a4a4a4;
 }
 </style>
