@@ -3,11 +3,12 @@ import Accordion from '../components/Accordion.vue';
 import getService from '../service/commonServices.js';
 import Pokedex from '../components/Pokedex.vue';
 import Dropdown from '../components/Dropdown.vue';
+import AdvancedSearch from '../components/AdvancedSearch.vue';
 // Load the full build.
 import _ from 'lodash';
 
 export default {
-    components: { Accordion, Pokedex, Dropdown },
+    components: { Accordion, Pokedex, Dropdown, AdvancedSearch },
     data() {
         return {
             result: null,
@@ -86,7 +87,7 @@ export default {
         <div id="AdvancedSearch">
             <Accordion>
                 <template v-slot:content>
-
+                    <AdvancedSearch></AdvancedSearch>
                 </template>
                 <template v-slot:button>
                     Show Advanced Search

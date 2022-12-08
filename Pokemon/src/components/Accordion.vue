@@ -1,11 +1,24 @@
 <script>
+export default {
+    data() {
+        return {
+            showFlg: false
+        }
+    },
+    methods: {
+        showContentFunc() {
+            this.showFlg = !this.showFlg;
+        }
+    }
+}
 </script>
 <template>
     <div id="AccordionContainer">
-        <div id="AccordionContent">
+        <div class="AccordionContent" :style="{'display': this.showFlg ? 'none' : 'block'}"></div>
+        <div class="AccordionContent" :style="{'display': !this.showFlg ? 'none' : 'block'}">
             <slot name="content"></slot>
         </div>
-        <button id="AccordionBtn">
+        <button id="AccordionBtn" @click="showContentFunc()">
             <slot name="button"></slot>
         </button>
     </div>
@@ -20,7 +33,7 @@
     align-items: center;
 }
 
-#AccordionContent {
+.AccordionContent {
     background: #616161;
     width: 100%;
     height: calc(100% - 20px);
