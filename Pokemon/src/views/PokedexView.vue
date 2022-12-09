@@ -151,7 +151,6 @@ export default {
 }
 
 #AdvancedSearch {
-    height: 70px;
     width: 100%;
 }
 

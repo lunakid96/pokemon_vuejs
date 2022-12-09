@@ -14,7 +14,7 @@ export default {
 </script>
 <template>
     <div id="AccordionContainer">
-        <div class="AccordionContent" :style="{'display': this.showFlg ? 'none' : 'block'}"></div>
+        <div class="AccordionContent" :style="{'display': this.showFlg ? 'none' : 'block', 'height': '50px'}"></div>
         <div class="AccordionContent" :style="{'display': !this.showFlg ? 'none' : 'block'}">
             <slot name="content"></slot>
         </div>
@@ -27,6 +27,7 @@ export default {
 #AccordionContainer {
     width: 100%;
     height: 100%;
+    min-height: 70px;
     display: flex;
     position: relative;
     flex-direction: column;
