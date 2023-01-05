@@ -45,6 +45,7 @@ export default {
 .custom-display-dropdown {
     display: block;
     background: #313131;
+    border-radius: 5px;
     width: 312px;
     height: 100%;
     height: 40px;
@@ -72,6 +73,7 @@ export default {
     border-radius: 3px;
     cursor: pointer;
     height: 152px;
+    overflow: auto;
 }
 
 .dropdown-panel li {

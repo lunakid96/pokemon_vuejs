@@ -15,7 +15,7 @@ export default {
 <template>
     <div id="AccordionContainer">
         <div class="AccordionContent" :style="{'display': this.showFlg ? 'none' : 'block', 'height': '50px'}"></div>
-        <div class="AccordionContent" :style="{'display': !this.showFlg ? 'none' : 'block'}">
+        <div class="AccordionContent" :style="{'display': !this.showFlg ? 'none' : 'block', 'height': '500px'}">
             <slot name="content"></slot>
         </div>
         <button id="AccordionBtn" @click="showContentFunc()">

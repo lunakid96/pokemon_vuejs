@@ -6,6 +6,7 @@ import Dropdown from '../components/Dropdown.vue';
 import AdvancedSearch from '../components/AdvancedSearch.vue';
 // Load the full build.
 import _ from 'lodash';
+import * as Common from '../commons/constant.js';
 
 export default {
     components: { Accordion, Pokedex, Dropdown, AdvancedSearch },
@@ -30,7 +31,7 @@ export default {
     },
     methods: {
         async getPokeList() {
-            let list = await getService('https://pokeapi.co/api/v2/pokemon?limit=' + this.countLimit + '&offset=0');
+            let list = await getService(Common.BASE_URL + 'pokemon?limit=' + this.countLimit + '&offset=0');
             this.result = await this.generateInfoPokedex(list.results);
             this.setDummyDataProvider();
         },
@@ -152,6 +153,7 @@ export default {
 
 #AdvancedSearch {
     width: 100%;
+    height: auto;
 }
 
 .content2 {
