@@ -8,20 +8,22 @@ export default {
 <template>
     <ul class="grid grid-cols-4" v-for="row in dataProvider">
         <li v-for="cell in row">
-            <figure>
-                <img :src="cell.info.sprites.other['official-artwork']
-                .front_default" alt="" style="width:100%">
-            </figure>
-            <div class="pokemon-info">
-                <p class="id">
-                    <span>#</span>
-                    {{ cell.info.id }}
-                </p>
-                <h5>{{ cell.name }}</h5>
-            </div>
-            <div v-for="ability in cell.info.types" class="abilities">
-                <span :class="'background-' + ability.type.name">{{ ability.type.name }}</span>
-            </div>
+            <router-link :to="{ name: 'detail', params: { name: cell.name } }">
+                <figure>
+                    <img :src="cell.info.sprites.other['official-artwork']
+                    .front_default" alt="" style="width:100%">
+                </figure>
+                <div class="pokemon-info">
+                    <p class="id">
+                        <span>#</span>
+                        {{ cell.info.id }}
+                    </p>
+                    <h5>{{ cell.name }}</h5>
+                </div>
+                <div v-for="ability in cell.info.types" class="abilities">
+                    <span :class="'background-' + ability.type.name">{{ ability.type.name }}</span>
+                </div>
+            </router-link>
         </li>
     </ul>
 </template>

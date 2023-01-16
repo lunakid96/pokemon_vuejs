@@ -11,7 +11,7 @@ export default {
             types: [],
             abilities: [],
             dummyTypesDataProvider: [],
-            abilitySelectedItem: {label: 'All', value: ''},
+            abilitySelectedItem: { label: 'All', value: '' },
             abilityDataProvider: []
         }
     },
@@ -35,7 +35,7 @@ export default {
             let result = [];
             if (dataProvider && dataProvider.length > 0) {
                 for (let index = 0; index < dataProvider.length; index++) {
-                    let newItem = {label: '', value: '', url: ''};
+                    let newItem = { label: '', value: '', url: '' };
                     const element = dataProvider[index];
                     newItem.label = this.customizeDisplayLabel(element.name);
                     newItem.value = element.name;
@@ -91,25 +91,68 @@ export default {
 
                 </ul>
             </div>
+            <div class="range-content flex justify-between clr-fff">
+                <h2 class="col-span-6">
+                    Number Range
+                </h2>
+                <div class="flex justify-around items-center w-[200px]">
+                    <input type="text" class="range-txt"/>
+                    <label>-</label>
+                    <input type="text" class="range-txt"/>
+                </div>
+            </div>
         </div>
-        <div class="weight-container">
-            dfsdf
+        <div class="filter-container">
             <div class="ability-content">
-                <h3 class="sort-label">Ability</h3>
-                <Dropdown id="AbilityComboBox" v-model:selectedItem="abilitySelectedItem" :dataProvider="abilityDataProvider"></Dropdown>
+                <h3 class="advance-label">Ability</h3>
+                <Dropdown id="AbilityComboBox" v-model:selectedItem="abilitySelectedItem"
+                    :dataProvider="abilityDataProvider"></Dropdown>
+            </div>
+            <div class="height-content">
+                <h3 class="advance-label">Height</h3>
+                <div class="height-filter flex">
+                    <span id="small-height" class="filter-button">
+
+                    </span>
+                    <span id="medium-height" class="filter-button">
+
+                    </span>
+                    <span id="lagre-height" class="filter-button">
+
+                    </span>
+                </div>
+            </div>
+            <div class="weight-content">
+                <h3 class="advance-label">Weight</h3>
+                <div class="weight-filter flex">
+                    <span id="small-weight" class="filter-button">
+
+                    </span>
+                    <span id="medium-weight" class="filter-button">
+
+                    </span>
+                    <span id="lagre-weight" class="filter-button">
+
+                    </span>
+                </div>
+            </div>
+            <div class="advance-submit">
+                <button id="reset-btn" class="advance-btn">Reset</button>
+                <button id="search-btn" class="advance-btn"><font-awesome-icon icon="fa-solid fa-magnifying-glass" />Search</button>
             </div>
         </div>
     </div>
 </template>
-<style scoped>
+<style >
 .advance-container {
     width: 100%;
     height: 100%;
+    max-width: 1024px;
+    margin: 1em auto;
 }
 
 .type-title {
     color: #fff;
-
 }
 
 .type-content {
@@ -137,8 +180,9 @@ export default {
     border-radius: 14px;
     color: #313131;
     line-height: 30px;
-    width: 32px;
+    width: 28px;
     text-align: center;
+    font-weight: bold;
 }
 
 .poke-type {
@@ -151,7 +195,10 @@ export default {
     border-radius: 3px;
 }
 
-.weight-container {
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 }
 
@@ -166,8 +213,95 @@ export default {
     flex-direction: column;
 }
 
+.advance-label {
+    color: #ffffff;
+}
+
 #AbilityComboBox ul {
     background: #a4a4a4;
     height: 300px;
+}
+
+.height-content {
+    height: 107px;
+    margin-bottom: 0.5em;
+}
+
+.height-filter {
+    height: 80px;
+}
+
+.weight-filter {
+    height: 80px;
+}
+
+.filter-button {
+    line-height: 100px;
+    text-align: center;
+    width: 27.46%;
+    border-radius: 12px;
+    height: 100%;
+    background: #f2f2f2;
+}
+
+#small-height::before {
+    content: url('../assets/images/height_small_black.png');
+}
+#medium-height::before {
+    content: url('../assets/images/height_medium_black.png');
+}
+#lagre-height::before {
+    content: url('../assets/images/height_lagre_black.png');
+}
+
+#lagre-height {
+    line-height: 120px !important;
+}
+#medium-height, #medium-weight {
+    margin: 0 5.69%;
+}
+
+#small-weight::before {
+    content: url('../assets/images/weight_small_black.png');
+}
+#medium-weight::before {
+    content: url('../assets/images/weight_medium_black.png');
+}
+#lagre-weight::before {
+    content: url('../assets/images/weight_lagre_black.png');
+}
+
+.range-txt {
+    width: 75px;
+    height: 100%;
+    display: inline;
+    color: black;
+    border-radius: 5px;
+    padding: 0 3px;
+}
+.clr-fff {
+    color: #fff;
+}
+
+.advance-btn {
+    border-radius: 5px;
+    color: #fff;
+    height: 55px;
+}
+
+#reset-btn {
+    background: #a4a4a4;
+    width: 104px;
+}
+#search-btn {
+    background: #ee6b2f;
+    width: 137px;
+    margin-left: 10px;
+}
+.advance-submit {
+    display: flex;
+    justify-content: flex-end;
+    height: 100px;
+    padding: 0 30px;
 }
 </style>
