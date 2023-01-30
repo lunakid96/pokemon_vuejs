@@ -8,7 +8,7 @@ export default {
 <template>
     <ul class="grid grid-cols-4" v-for="row in dataProvider">
         <li v-for="cell in row">
-            <router-link :to="{ name: 'detail', params: { name: cell.name } }">
+            <router-link :to="{ name: 'detail', params: { name: cell.name.toLowerCase() } }">
                 <figure>
                     <img :src="cell.info.sprites.other['official-artwork']
                     .front_default" alt="" style="width:100%">
