@@ -4,18 +4,6 @@ import Menu from "./components/Menu.vue"
 
 export default {
     components: { Menu },
-    // mounted() {
-    //     const axios = inject('axios');
-    //     const getList = () => {
-    //         axios
-    //             .get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
-    //             .then((response) => {
-    //                 console.log(response.data)
-    //             })
-    //     }
-
-    //     return { getList }
-    // }
 }
 
 </script>
