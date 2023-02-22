@@ -14,10 +14,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faUserSecret, faHouse, faTable, faUser, faBook, faGamepad, faMagnifyingGlass, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faHouse, faTable, faUser, faBook, faGamepad, faMagnifyingGlass, faArrowsRotate, faMars, faVenus } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faHouse, faTable, faUser, faBook, faGamepad, faMagnifyingGlass, faArrowsRotate);
+library.add(faUserSecret, faHouse, faTable, faUser, faBook, faGamepad, faMagnifyingGlass, faArrowsRotate, faMars, faVenus);
 
 const app = createApp(App);
 

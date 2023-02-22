@@ -28,3 +28,24 @@ export function convertToUpperCaseCharacter(label) {
     }
     return result;
 }
+
+export function convertHeightPokemon(value) {
+    let totalInch = (value * 10) / 2.54;
+    let feet = Math.floor(totalInch / 12);
+    let inch = Math.ceil(totalInch - 12 * feet);
+    let inchStr = '';
+    let result = [];
+    if (inch < 10) {
+        inchStr = '0' + inch;
+    } else {
+        inchStr = String(inch);
+    }
+    result.push(feet);
+    result.push(inchStr);
+    return result;
+}
+
+export function convertWeightPokemon(value) {
+    let pound = Math.floor(value / 0.45359237);
+    return pound / 10;
+}

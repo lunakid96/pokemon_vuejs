@@ -1,7 +1,9 @@
 <script>
 import * as CommonFunc from '../utils/ConvertFunction.js';
 import * as Common from '../commons/constant.js';
+import AbilitiesInfo from '../components/AbilitiesInfo.vue';
 export default {
+    components: { AbilitiesInfo },
     props: { detailInfo: Object },
     data() {
         return {
@@ -12,7 +14,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.pokemonProfile);
         this.getInfoImagePokemon();
         this.getStatsPokemon();
     },
@@ -25,7 +26,7 @@ export default {
             this.statsPokemon = [];
             let statsAPI = this.pokemonProfile.stats;
             statsAPI.forEach(element => {
-                let item = {baseStat: -1, name: ''};
+                let item = { baseStat: -1, name: '' };
                 item.baseStat = this.determineHeightStatsGraph(element.base_stat);
                 if (element.stat.name == 'hp') {
                     item.name = element.stat.name.toUpperCase();
@@ -34,11 +35,10 @@ export default {
                 }
                 this.statsPokemon.push(item);
             });
-            console.log(this.statsPokemon);
         },
         determineHeightStatsGraph(baseStat) {
             let heightPercent = 0;
-            heightPercent = (baseStat/Common.MAX_STAT) * 100;
+            heightPercent = (baseStat / Common.MAX_STAT) * 100;
             return heightPercent;
         }
     }
@@ -48,14 +48,14 @@ export default {
     <div class="profile-container gap-5">
         <div class="image-stats-container">
             <div class="img-content">
-                <img :src="imagePokemon"/>
+                <img :src="imagePokemon" />
             </div>
             <div class="stats-content">
                 <h3>Stats</h3>
                 <div class="h-box">
                     <div class="stats-container" v-for="item in statsPokemon">
                         <div class="stat-graph">
-                            <div class="meter" :style="{ 'height': item.baseStat  + '%' }"></div>
+                            <div class="meter" :style="{ 'height': item.baseStat + '%' }"></div>
                         </div>
                         <p class="stat-name">{{ item.name }}</p>
                     </div>
@@ -63,7 +63,7 @@ export default {
             </div>
         </div>
         <div class="profile-detail-container">
-            
+            <AbilitiesInfo :abilitiesInfo="pokemonProfile"></AbilitiesInfo>
         </div>
     </div>
 </template>
@@ -73,23 +73,31 @@ export default {
     display: flex;
 }
 
+.image-stats-container,
+.profile-detail-container {
+    width: 50%;
+}
+
 .img-content {
     background: #f2f2f2;
     border-radius: 5px;
 }
+
 .stats-content {
     background: #a4a4a4;
     margin: 1em 0;
     display: flex;
     flex-direction: column;
 }
+
 .stat-graph {
     background: #fff;
     width: 100%;
     height: 176px;
 }
+
 .stat-name {
-    font-family: "Roboto",arial,sans-serif;
+    font-family: "Roboto", arial, sans-serif;
     font-weight: bold;
     color: #212121;
     float: left;
@@ -98,11 +106,13 @@ export default {
     text-transform: none;
     width: 100%;
 }
+
 .stats-container {
     width: 56px;
 }
+
 .stats-content h3 {
-    font-family: "Flexo-Medium",arial,sans-serif;
+    font-family: "Flexo-Medium", arial, sans-serif;
     clear: both;
     color: #313131;
     float: left;
@@ -110,14 +120,17 @@ export default {
     margin: 0.75em 1.5em 1.5em;
     text-transform: none;
 }
+
 .h-box {
     display: flex;
     justify-content: space-evenly;
 }
+
 .meter {
     background: #30a7d7;
     position: absolute;
     width: 100%;
     bottom: 0;
 }
+
 </style>
